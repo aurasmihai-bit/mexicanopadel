@@ -161,10 +161,13 @@
           <option value="16">16</option>
           <option value="24" selected>24</option>
           <option value="32">32</option>
+          <option value="48">48</option>
         </select>
         <label style="margin-left:16px;">Rounds:</label>
         <input type="number" id="rounds-setting" value="5" min="1" max="20" style="width:70px;" onchange="saveSettings()">
+        <button class="small" onclick="applySettings()" style="margin-left:8px;">Apply</button>
       </div>
+      <div id="settings-msg" style="font-size:12px;color:var(--green-text);min-height:16px;margin-top:6px;"></div>
     </div>
 
     <div class="card">
@@ -207,6 +210,18 @@ let state = {
 function saveSettings() {
   state.pointsPerMatch = parseInt(document.getElementById('points-setting').value);
   state.totalRounds = parseInt(document.getElementById('rounds-setting').value) || 5;
+}
+
+function applySettings() {
+  const newPoints = parseInt(document.getElementById('points-setting').value);
+  const newRounds = parseInt(document.getElementById('rounds-setting').value) || 5;
+  state.pointsPerMatch = newPoints;
+  state.totalRounds = newRounds;
+  const msg = document.getElementById('settings-msg');
+  msg.textContent = `Salvat: ${newPoints} puncte/meci · ${newRounds} runde`;
+  setTimeout(() => { msg.textContent = ''; }, 2500);
+  renderRounds();
+  renderLeaderboard();
 }
 
 function uid() { return Math.random().toString(36).slice(2, 9); }
