@@ -157,12 +157,7 @@
       <div class="card-title">TOURNAMENT SETTINGS</div>
       <div class="settings-row">
         <label>Points per match:</label>
-        <select id="points-setting" onchange="saveSettings()">
-          <option value="16">16</option>
-          <option value="24" selected>24</option>
-          <option value="32">32</option>
-          <option value="48">48</option>
-        </select>
+        <input type="number" id="points-setting" value="24" min="1" max="999" style="width:80px;" onchange="saveSettings()">
         <label style="margin-left:16px;">Rounds:</label>
         <input type="number" id="rounds-setting" value="5" min="1" max="20" style="width:70px;" onchange="saveSettings()">
         <button class="small" onclick="applySettings()" style="margin-left:8px;">Apply</button>
